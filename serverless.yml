@@ -1,0 +1,21 @@
+service: crud-lambda-api
+
+frameworkVersion: "2"
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  lambdaHashingVersion: 20201221
+  region: ap-south-1
+
+plugins:
+  - serverless-offline
+
+functions:
+  userAPI:
+    handler: handler.handler
+    events:
+      - http:
+          path: /
+          method: get
+          cors: true
