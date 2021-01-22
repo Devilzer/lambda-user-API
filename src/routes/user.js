@@ -1,10 +1,7 @@
 const express = require("express");
 const router = express.Router();
+const userController = require("../controller/userController");
 
-router.get("/",(req,res)=>{
-    return res.status(200).json({
-        message : "IN User"
-    });
-});
+router.post("/create",userController.register);
 
 module.exports = router;
