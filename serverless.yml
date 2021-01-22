@@ -19,3 +19,7 @@ functions:
           path: /
           method: get
           cors: true
+      - http:
+          path: /user
+          method: get
+          cors: true
