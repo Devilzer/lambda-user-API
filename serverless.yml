@@ -23,3 +23,7 @@ functions:
           path: /user/create
           method: post
           cors: true
+      - http:
+          path: /user/login
+          method: post
+          cors: true
