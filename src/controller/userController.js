@@ -60,4 +60,39 @@ module.exports.login = async(req,res)=>{
             message : `Error in login ${error}`
         });
     }
+};
+
+
+// user update meathod
+module.exports.update = async(req,res)=>{
+    try {
+        const authHeader = req.headers["authorization"];
+        //spliting string to seperate it from bearer
+        const token = authHeader && authHeader.split(" ")[1];
+        if(token==null){
+            return res.status(401).json({
+                message: "Invalid request",
+              });
+        }
+        jwt.verify(token,process.env.ACCESS_TOKEN_SECERT,async(err,user)=>{
+            if(err){
+                return res.status(401).json({
+                    message: "Invalid request",
+                  });
+            }
+            var updatedUser = await User.findOne({phone:user.phone});
+            updatedUser.name = req.body.name;
+            updatedUser.phone =req.body.phone;
+            updatedUser.password = req.body.password;
+            await updatedUser.save();
+            return res.status(200).json({
+                message : "User info updated"
+            });
+        });
+        
+    } catch (error) {
+        return res.status(400).json({
+            message : `error in updating user ${error}`
+        });
+    }
 }

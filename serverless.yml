@@ -27,3 +27,7 @@ functions:
           path: /user/login
           method: post
           cors: true
+      - http:
+          path: /user/update
+          method: post
+          cors: true
