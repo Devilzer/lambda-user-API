@@ -11,6 +11,10 @@ provider:
 plugins:
   - serverless-offline
 
+package:
+  exclude:
+    - screenshots/**
+
 functions:
   userAPI:
     handler: handler.handler
