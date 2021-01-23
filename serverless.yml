@@ -35,3 +35,7 @@ functions:
           path: /user/get/{phone}
           method: get
           cors: true
+      - http:
+          path: /user/getall
+          method: get
+          cors: true

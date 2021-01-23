@@ -103,7 +103,8 @@ module.exports.getuser=async(req,res)=>{
         const user = await User.findOne({phone:req.params.phone});
         if(user){
             return res.status(200).json({
-                user : user
+                name : user.name,
+                phone : user.phone
             });
         }else{
             return res.status(404).json({
@@ -113,6 +114,33 @@ module.exports.getuser=async(req,res)=>{
     } catch (error) {
         return res.status(400).json({
             message : `error in finding user ${error}`
+        });
+    }
+};
+
+//get all user details method
+
+module.exports.getalluser = async(req,res)=>{
+    try {
+        const users = await User.find({});
+        if(users.length===0){
+            return res.status(200).json({
+                message :"No users to Display"
+            });
+        }
+        else{
+            // filtering out password for displaying.
+            let newUsers =users.map(user=>({
+                name : user.name,
+                password : user.password
+            }));
+            return res.status(200).json({
+                users : newUsers
+            });
+        }
+    } catch (error) {
+        return res.status(400).json({
+            message : `error in getting users ${error}`
         });
     }
 };
