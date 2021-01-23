@@ -74,6 +74,7 @@ module.exports.update = async(req,res)=>{
                 message: "Invalid request",
               });
         }
+        // token verification so that user can update own info only.
         jwt.verify(token,process.env.ACCESS_TOKEN_SECERT,async(err,user)=>{
             if(err){
                 return res.status(401).json({

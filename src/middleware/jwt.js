@@ -6,6 +6,7 @@ const jwt = require("jsonwebtoken");
 module.exports.authenticate = (req,res,next)=>{
     try {
         const authHeader = req.headers["authorization"];
+        //spliting string to seperate it from bearer
         const token = authHeader && authHeader.split(" ")[1];
         if(token==null){
             return res.status(401).json({

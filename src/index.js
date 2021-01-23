@@ -21,6 +21,7 @@ app.get("/",(req,res)=>{
     });
 });
 
+//using routes
 app.use("/user",require("./routes"));
 
 module.exports = app;
