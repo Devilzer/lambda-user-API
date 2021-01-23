@@ -63,7 +63,7 @@ module.exports.login = async(req,res)=>{
 };
 
 
-// user update meathod
+// user update method
 module.exports.update = async(req,res)=>{
     try {
         const authHeader = req.headers["authorization"];
@@ -95,4 +95,24 @@ module.exports.update = async(req,res)=>{
             message : `error in updating user ${error}`
         });
     }
-}
+};
+
+//method to get a single user info using phone no.
+module.exports.getuser=async(req,res)=>{
+    try {
+        const user = await User.findOne({phone:req.params.phone});
+        if(user){
+            return res.status(200).json({
+                user : user
+            });
+        }else{
+            return res.status(404).json({
+                message:"User not found."
+            });
+        }   
+    } catch (error) {
+        return res.status(400).json({
+            message : `error in finding user ${error}`
+        });
+    }
+};

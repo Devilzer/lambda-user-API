@@ -31,3 +31,7 @@ functions:
           path: /user/update
           method: post
           cors: true
+      - http:
+          path: /user/get/{phone}
+          method: get
+          cors: true
