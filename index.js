@@ -25,11 +25,13 @@ app.get("/",(req,res)=>{
 //using routes
 app.use("/user",require("./src/routes"));
 
+//  ONLY REQUIRED FOR UNIT TESTING(creating a local server).
 // app.listen(3000,(err)=>{
 //     if(err){
 //         console.log("Error in starting server ",err);
 //     }
 //     console.log("Server is up and running at 3000");
 // });
+
 
 module.exports = app;
