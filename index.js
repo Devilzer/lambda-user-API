@@ -1,8 +1,9 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+require('dotenv').config();
 const app = express();
-const db = require("./config/mongoose");
+const db = require("./src/config/mongoose");
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -22,6 +23,13 @@ app.get("/",(req,res)=>{
 });
 
 //using routes
-app.use("/user",require("./routes"));
+app.use("/user",require("./src/routes"));
+
+// app.listen(3000,(err)=>{
+//     if(err){
+//         console.log("Error in starting server ",err);
+//     }
+//     console.log("Server is up and running at 3000");
+// });
 
 module.exports = app;
